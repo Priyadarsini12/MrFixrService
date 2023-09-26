@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:mrfixr/notification.dart';
 
 class Booking extends StatefulWidget {
   const Booking({super.key});
@@ -50,14 +51,45 @@ class _BookingState extends State<Booking> {
               fontSize: 20),
         ),
         actions: [
-          Icon(
-            Icons.notifications,
-            color: Colors.blue.shade800,
-            size: 26,
-          ),
-          SizedBox(
-            width: MediaQuery.of(context).size.width * 0.040,
-          )
+             SizedBox(
+            //color: Colors.amberAccent,
+            width:MediaQuery.of(context).size.width * 0.12,
+            child: Stack(
+              children: [
+                Center(
+                  child: InkWell(
+                  onTap: (){
+                    Navigator.push(context,
+                    MaterialPageRoute(builder: (context)=>const Notificationpage()));
+                  },
+                  child: Icon(
+                    Icons.notifications,
+                    color:Colors.blue.shade800,
+                    size: MediaQuery.of(context).size.width*0.06,
+                  ),             
+                 ),
+                ),
+              Positioned(
+                right: MediaQuery.of(context).size.width * 0,
+                top: MediaQuery.of(context).size.width * 0.02,
+                left:MediaQuery.of(context).size.width*0.07 ,
+                child: Container(
+                  height: MediaQuery.of(context).size.height * 0.024,
+                  width: MediaQuery.of(context).size.width * 0.058,              
+                  decoration: BoxDecoration(
+                    color: Colors.blue.shade800,
+                  borderRadius: BorderRadius.circular(100)),
+                  child: Center(child: Text('0',
+                  style: TextStyle(fontSize: MediaQuery.of(context).size.width * 0.034),
+                  )),
+                  //borderRadius: BorderRadius.circular(100),
+                ))
+              ]
+           ),
+             ),
+             SizedBox(
+              width: MediaQuery.of(context).size.width*0.025,
+             )
         ],
       ),
       body: Padding(
