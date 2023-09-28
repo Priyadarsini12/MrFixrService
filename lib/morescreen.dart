@@ -114,51 +114,51 @@ class MoreList {
 
 List<MoreList> moreDetiles = [
   MoreList(
-    image: "assets/images/profile.png",
+    image: "assets/team.png",
     title: "Profile",
   ),
   MoreList(
-    image: "assets/images/reports.png",
+    image: "assets/reports.png",
     title: "Reports",
   ),
   MoreList(
-    image: "assets/images/chat.png",
+    image: "assets/chat.png",
     title: "Chat",
   ),
   MoreList(
-    image: "assets/images/setting.png",
+    image: "assets/setting.png",
     title: "Setting",
   ),
   MoreList(
-    image: "assets/images/reports.png",
+    image: "assets/reports.png",
     title: "My\nSubscriptions",
   ),
   MoreList(
-    image: "assets/images/reports.png",
+    image: "assets/reports.png",
     title: "Transaction",
   ),
   MoreList(
-    image: "assets/images/aboutus.png",
+    image: "assets/reports.png",
     title: "About Us",
   ),
   MoreList(
-    image: "assets/images/reports.png",
+    image: "assets/reports.png",
     title: "Privacy Policy",
   ),
   MoreList(
-    image: "assets/images/terms.png",
+    image: "assets/team.png",
     title: "Terms &\nConditions",
   ),
   MoreList(
-    image: "assets/images/refund.png",
+    image: "assets/refund.png",
     title: "Refund Policy",
   ),
   MoreList(
-    image: "assets/images/cancel.png",
+    image: "assets/cancel.png",
     title: "Cancellation\nPolicy",
   ),
   MoreList(
-    image: "assets/images/logout.png",
+    image: "assets/logout.png",
     title: "Sign Out",
   ),
 ];

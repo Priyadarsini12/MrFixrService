@@ -1,6 +1,9 @@
- import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:mrfixr/morescreen/editprofile.dart';
 import 'package:mrfixr/notification.dart';
+import 'package:mrfixr/theme.dart';
+import 'package:provider/provider.dart';
+
 
 class Profilepage extends StatefulWidget {
   const Profilepage({super.key});
@@ -10,6 +13,7 @@ class Profilepage extends StatefulWidget {
 }
 
 class _ProfilepageState extends State<Profilepage> {
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -114,13 +118,16 @@ class _ProfilepageState extends State<Profilepage> {
                                     child: Row(
                                       mainAxisAlignment:MainAxisAlignment.spaceBetween ,
                                      children: [
-                                      const Padding(
-                                        padding: EdgeInsets.all(14.0),
+                                       Padding(
+                                        padding: const EdgeInsets.all(14.0),
                                         child: Row(
                                           children: [
-                                            Icon(Icons.sunny),
-                                         SizedBox(width: 7,),
-                                        Text('Dark mode'),
+                                             Image.asset('assets/white-balance.png',
+                                            height: MediaQuery.of(context).size.height*0.05,
+                                            width: MediaQuery.of(context).size.width*0.05,
+                                         ),
+                                         const SizedBox(width: 10,),
+                                        const Text('Dark mode'),
                                           ]
                                         ),
                                       ),
@@ -128,8 +135,20 @@ class _ProfilepageState extends State<Profilepage> {
                                         padding: const EdgeInsets.only(bottom:10.0,right: 17,),
                                         child: Align(
                                           alignment: Alignment.topRight,
-                                        child: IconButton(onPressed: (){},
-                                         icon: const Icon(Icons.toggle_off,size: 55,),)
+                                        child: IconButton(
+                                     onPressed: () {
+                                 Provider.of<ThemeProvider>(context, listen: false).toggleTheme();
+                                  },
+                                  icon: Icon(
+                                     Provider.of<ThemeProvider>(context).isDarkMode
+                                   ? Icons.toggle_on
+                                    : Icons.toggle_off,
+                                       size: 55,
+                                         ),
+                                     )
+
+                                        //IconButton(onPressed: (){},
+                                         //icon: const Icon(Icons.toggle_off,size: 55,),)
                                         ),
                                       )
                                      ],
@@ -146,15 +165,15 @@ class _ProfilepageState extends State<Profilepage> {
                                       mainAxisAlignment:MainAxisAlignment.spaceBetween ,
                                      children: [
                                        Padding(
-                                        padding: EdgeInsets.all(14.0),
+                                        padding: const EdgeInsets.all(14.0),
                                         child: Row(
                                           children: [
                                             Image.asset('assets/edit.png',
                                             height: MediaQuery.of(context).size.height*0.05,
                                             width: MediaQuery.of(context).size.width*0.05,
                                          ),
-                                         SizedBox(width: 10,),
-                                        Text('Edit Profile'),
+                                         const SizedBox(width: 10,),
+                                        const Text('Edit Profile'),
                                           ]
                                         ),
                                       ),
@@ -181,15 +200,15 @@ class _ProfilepageState extends State<Profilepage> {
                                       mainAxisAlignment:MainAxisAlignment.spaceBetween ,
                                      children: [
                                        Padding(
-                                        padding: EdgeInsets.all(14.0),
+                                        padding: const EdgeInsets.all(14.0),
                                         child: Row(
                                           children: [
                                             Image.asset('assets/notification.png',
                                             height: MediaQuery.of(context).size.height*0.05,
                                             width: MediaQuery.of(context).size.width*0.05,
                                          ),
-                                         SizedBox(width: 10,),
-                                          Text('Notification'),
+                                         const SizedBox(width: 10,),
+                                          const Text('Notification'),
                                           ]
                                         ),
                                       ),
@@ -210,18 +229,22 @@ class _ProfilepageState extends State<Profilepage> {
                                     height: MediaQuery.of(context).size.height*0.08,
                                     width: MediaQuery.of(context).size.width,
                                     decoration: BoxDecoration(
-                                     color: Colors.white.withOpacity(0.70)
+                                     color: Colors.white.withOpacity(0.94)
                                     ),
                                     child: Row(
                                       mainAxisAlignment:MainAxisAlignment.spaceBetween ,
                                      children: [
-                                      const Padding(
-                                        padding: EdgeInsets.all(14.0),
+                                       Padding(
+                                        padding: const EdgeInsets.all(14.0),
                                         child: Row(
                                           children: [
-                                            Icon(Icons.person_pin),
-                                         SizedBox(width: 7,),
-                                        Text('Terms and Conditions'),
+                                            Image.asset('assets/team.png',
+                                            height: MediaQuery.of(context).size.height*0.05,
+                                            width: MediaQuery.of(context).size.width*0.05,
+                                         ),
+                                         const SizedBox(width: 10,),
+
+                                        const Text('Terms and Conditions'),
                                           ]
                                         ),
                                       ),
@@ -245,15 +268,15 @@ class _ProfilepageState extends State<Profilepage> {
                                       mainAxisAlignment:MainAxisAlignment.spaceBetween ,
                                      children: [
                                        Padding(
-                                        padding: EdgeInsets.all(14.0),
+                                        padding: const EdgeInsets.all(14.0),
                                         child: Row(
                                           children: [
                                             Image.asset('assets/compliant.png',
                                             height: MediaQuery.of(context).size.height*0.05,
                                             width: MediaQuery.of(context).size.width*0.05,
                                          ),
-                                         SizedBox(width: 10,),
-                                        Text('Privacy Policy'),
+                                         const SizedBox(width: 10,),
+                                        const Text('Privacy Policy'),
                                           ]
                                         ),
                                       ),
@@ -278,15 +301,15 @@ class _ProfilepageState extends State<Profilepage> {
                                       mainAxisAlignment:MainAxisAlignment.spaceBetween ,
                                      children: [
                                        Padding(
-                                        padding: EdgeInsets.all(14.0),
+                                        padding: const EdgeInsets.all(14.0),
                                         child: Row(
                                           children: [
                                            Image.asset('assets/logout.png',
                                             height: MediaQuery.of(context).size.height*0.05,
                                             width: MediaQuery.of(context).size.width*0.05,
                                          ),
-                                         SizedBox(width: 10,),
-                                        Text('Logout'),
+                                         const SizedBox(width: 10,),
+                                        const Text('Logout'),
                                           ]
                                         ),
                                       ),
