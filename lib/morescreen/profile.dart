@@ -1,4 +1,8 @@
+
+import 'package:day_night_switch/day_night_switch.dart';
 import 'package:flutter/material.dart';
+
+
 import 'package:mrfixr/morescreen/editprofile.dart';
 import 'package:mrfixr/notification.dart';
 import 'package:mrfixr/theme.dart';
@@ -16,11 +20,14 @@ class _ProfilepageState extends State<Profilepage> {
   
   @override
   Widget build(BuildContext context) {
+      final themeProvider = Provider.of<ThemeProvider>(context);
     return Scaffold(
         appBar: AppBar(
         elevation: 2.5,
         titleSpacing: 0,
-        backgroundColor: Colors.white.withOpacity(0.94),
+        //backgroundColor: Colors.white.withOpacity(0.94),
+       // backgroundColor: themeProvider.themeData.appBarTheme.backgroundColor,
+
         leading: Padding(
           padding:
               EdgeInsets.all(MediaQuery.of(context).size.width * 0.025),
@@ -40,7 +47,7 @@ class _ProfilepageState extends State<Profilepage> {
         ),
         body:SingleChildScrollView(
           child: Container(
-            color: Colors.grey.withOpacity(0.1),
+             color: Colors.grey.withOpacity(0.1),
             child: Padding(
               padding: const EdgeInsets.only(top: 10),
               child: Column(
@@ -83,8 +90,8 @@ class _ProfilepageState extends State<Profilepage> {
                                  Text('Day since'),
                                   SizedBox(height: 2,),
                                   Text('Joined')
-                            ],
-                          ),
+                              ],
+                              ),
                                Column(
                                     children: [
                                       Text('0',
@@ -93,9 +100,9 @@ class _ProfilepageState extends State<Profilepage> {
                                  Text('Booking'),
                                   SizedBox(height: 2,),
                                   Text('Completed')
-                            ],
-                          ),
-                          Column(
+                               ],
+                               ),
+                                 Column(
                                     children: [
                                       Text('0',
                                       style:TextStyle(fontWeight: FontWeight.bold) ),
@@ -103,8 +110,8 @@ class _ProfilepageState extends State<Profilepage> {
                                  Text('Total Assigned'),
                                   SizedBox(height: 2,),
                                   Text('Booking')
-                            ],
-                              )
+                                   ],
+                                   )
                                      ]
                                     ),
                                    ) ,
@@ -113,7 +120,8 @@ class _ProfilepageState extends State<Profilepage> {
                                     height: MediaQuery.of(context).size.height*0.08,
                                     width: MediaQuery.of(context).size.width,
                                     decoration: BoxDecoration(
-                                      color: Colors.white.withOpacity(0.94)
+                                      //color: Colors.white.withOpacity(0.94)
+                                      color: Theme.of(context).primaryColor,
                                     ),
                                     child: Row(
                                       mainAxisAlignment:MainAxisAlignment.spaceBetween ,
@@ -131,35 +139,35 @@ class _ProfilepageState extends State<Profilepage> {
                                           ]
                                         ),
                                       ),
-                                      Padding(
-                                        padding: const EdgeInsets.only(bottom:10.0,right: 17,),
-                                        child: Align(
-                                          alignment: Alignment.topRight,
-                                        child: IconButton(
-                                     onPressed: () {
-                                 Provider.of<ThemeProvider>(context, listen: false).toggleTheme();
-                                  },
-                                  icon: Icon(
-                                     Provider.of<ThemeProvider>(context).isDarkMode
-                                   ? Icons.toggle_on
-                                    : Icons.toggle_off,
-                                       size: 55,
-                                         ),
-                                     )
-
-                                        //IconButton(onPressed: (){},
-                                         //icon: const Icon(Icons.toggle_off,size: 55,),)
-                                        ),
+                                     // Padding(
+                                      //  padding: const EdgeInsets.only(left:40,right:0),
+                                       // child: 
+                                        Align(
+                                          alignment: Alignment.centerRight,
+                                    child: Transform.scale(
+                                      scale: 0.38,
+                                      child: DayNightSwitch(
+                                      value: themeProvider.isDarkMode,
+                                      onChanged: (value) {
+                                      themeProvider.toggleTheme();
+                                              },
+                                         moonImage: const AssetImage('assets/night.png',
+                                         ), 
+                                        sunImage: const AssetImage('assets/brightness.png'),     
+                                             ),
+                                            ),
+                                          ),
+                                         ]
                                       )
-                                     ],
-                                    )
                                    ),
+                            
                                   const SizedBox(height: 10,),
                                    Container(
                                     height: MediaQuery.of(context).size.height*0.08,
                                     width: MediaQuery.of(context).size.width,
                                     decoration:  BoxDecoration(
-                                    color: Colors.white.withOpacity(0.94)
+                                   // color: Colors.white.withOpacity(0.94)
+                                    color: Theme.of(context).primaryColor,
                                     ),
                                     child: Row(
                                       mainAxisAlignment:MainAxisAlignment.spaceBetween ,
@@ -194,7 +202,8 @@ class _ProfilepageState extends State<Profilepage> {
                                     height: MediaQuery.of(context).size.height*0.08,
                                     width: MediaQuery.of(context).size.width,
                                     decoration: BoxDecoration(
-                                       color: Colors.white.withOpacity(0.94)
+                                      // color: Colors.white.withOpacity(0.94)
+                                       color: Theme.of(context).primaryColor,
                                     ),
                                     child: Row(
                                       mainAxisAlignment:MainAxisAlignment.spaceBetween ,
@@ -229,7 +238,8 @@ class _ProfilepageState extends State<Profilepage> {
                                     height: MediaQuery.of(context).size.height*0.08,
                                     width: MediaQuery.of(context).size.width,
                                     decoration: BoxDecoration(
-                                     color: Colors.white.withOpacity(0.94)
+                                     //color: Colors.white.withOpacity(0.94)
+                                      color: Theme.of(context).primaryColor,
                                     ),
                                     child: Row(
                                       mainAxisAlignment:MainAxisAlignment.spaceBetween ,
@@ -257,12 +267,13 @@ class _ProfilepageState extends State<Profilepage> {
                                      ],
                                     )
                                    ),
-                              const SizedBox(height: 10,),
+                                  const SizedBox(height: 10,),
                                    Container(
                                     height: MediaQuery.of(context).size.height*0.08,
                                     width: MediaQuery.of(context).size.width,
                                     decoration: BoxDecoration(
-                                     color: Colors.white.withOpacity(0.94)
+                                     //color: Colors.white.withOpacity(0.94)
+                                      color: Theme.of(context).primaryColor,
                                     ),
                                     child: Row(
                                       mainAxisAlignment:MainAxisAlignment.spaceBetween ,
@@ -295,7 +306,8 @@ class _ProfilepageState extends State<Profilepage> {
                                     height: MediaQuery.of(context).size.height*0.08,
                                     width: MediaQuery.of(context).size.width,
                                     decoration: BoxDecoration(
-                                     color: Colors.white.withOpacity(0.94)
+                                     //color: Colors.white.withOpacity(0.94)
+                                      color: Theme.of(context).primaryColor,
                                     ),
                                     child: Row(
                                       mainAxisAlignment:MainAxisAlignment.spaceBetween ,
@@ -327,10 +339,10 @@ class _ProfilepageState extends State<Profilepage> {
                                   ]
                              )
                           ),
-                    ),
+                       ),
                      )
-                  );
-               }
+                );
+                }
     void showLogoutDialog(BuildContext context) {
     showDialog(
   context: context,

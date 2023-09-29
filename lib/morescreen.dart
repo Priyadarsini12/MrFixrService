@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'morescreen/profile.dart';
+
 class MoreScreen extends StatefulWidget {
   const MoreScreen({super.key});
 
@@ -63,45 +65,44 @@ class _MoreScreenState extends State<MoreScreen> {
       ),
     );
   }
-  // tapped(int index) {
-  //   if (index == 0) {
-  //     Navigator.push(context,
-  //         MaterialPageRoute(builder: (context) => const ProfileScreen()));
-  //   } else if (index == 1) {
-  //     Navigator.push(
-  //         context, MaterialPageRoute(builder: (context) => ReportsScreen()));
-  //   } else if (index == 2) {
-  //     Navigator.push(context,
-  //         MaterialPageRoute(builder: (context) => const ChatScreen()));
-  //   } else if (index == 3) {
-  //     Navigator.push(
-  //         context, MaterialPageRoute(builder: (context) => const SettingScreen()));
-  //   } else if (index == 4) {
-  //     Navigator.push(
-  //         context, MaterialPageRoute(builder: (context) => const SubscriptionsScreen()));
-  //   } else if (index == 5) {
-  //     Navigator.push(
-  //         context, MaterialPageRoute(builder: (context) => const TransactionScreen()));
-  //   } else if (index == 6) {
-  //     Navigator.push(
-  //         context, MaterialPageRoute(builder: (context) => const AboutUsScreen()));
-  //   } else if (index == 7) {
-  //     Navigator.push(context,
-  //         MaterialPageRoute(builder: (context) => const PrivacyPolicyScreen()));
-  //   } else if (index == 8) {
-  //     Navigator.push(context,
-  //         MaterialPageRoute(builder: (context) => const TermsAndConditionsScreen()));  
-  //   } else if (index == 9) {
-  //     Navigator.push(
-  //         context, MaterialPageRoute(builder: (context) => const RefundPolicyScreen()));
-  //   } else if (index == 10) {
-  //     Navigator.push(
-  //         context, MaterialPageRoute(builder: (context) => const CancellationPolicyScreen()));
-  //   } else if (index == 11) {
-  //     Navigator.push(context, MaterialPageRoute(builder: (context) => const SignOutScreen()));
-  //   }
-  // }
-}
+  //tapped(int index) {
+   //if (index == 0) {
+   //Navigator.push(context,
+    //   MaterialPageRoute(builder: (context) => const Profilepage()));}
+     //} else if (index == 1) {
+     //  Navigator.push(
+    //   context, MaterialPageRoute(builder: (context) => ReportsScreen()));
+    // } else if (index == 2) {
+    // Navigator.push(context,
+    //       MaterialPageRoute(builder: (context) => const ChatScreen()));
+    // } else if (index == 3) {
+    //  Navigator.push(
+     //     context, MaterialPageRoute(builder: (context) => const SettingScreen()));
+     // } else if (index == 4) {
+    //   Navigator.push(
+     //     context, MaterialPageRoute(builder: (context) => const SubscriptionsScreen()));
+     //} else if (index == 5) {
+     //  Navigator.push(
+     //     context, MaterialPageRoute(builder: (context) => const TransactionScreen()));
+      // } else if (index == 6) {
+   //Navigator.push(
+     //   context, MaterialPageRoute(builder: (context) => const AboutUsScreen()));
+     //} else if (index == 7) {
+     //  Navigator.push(context,
+       //    MaterialPageRoute(builder: (context) => const PrivacyPolicyScreen()));
+     //} else if (index == 8) {
+       //Navigator.push(context,
+        //   MaterialPageRoute(builder: (context) => const TermsAndConditionsScreen()));  
+    //} else if (index == 9) {
+      // Navigator.push(
+        //   context, MaterialPageRoute(builder: (context) => const RefundPolicyScreen()));
+     //} else if (index == 10) {
+       //Navigator.push(
+         //  context, MaterialPageRoute(builder: (context) => const CancellationPolicyScreen()));
+    // } else if (index == 11) {
+      // Navigator.push(context, MaterialPageRoute(builder: (context) => const SignOutScreen()));
+     }
+  
 
 class MoreList {
   late String image, title;

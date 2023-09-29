@@ -47,7 +47,7 @@ class _EditprofileState extends State<Editprofile>
       appBar: AppBar(
         elevation: 2.5,
         titleSpacing: 0,
-        backgroundColor: Colors.white.withOpacity(0.94),
+        //backgroundColor: Colors.white.withOpacity(0.94),
         leading: Padding(
           padding: EdgeInsets.all(MediaQuery.of(context).size.width * 0.025),
           child: IconButton(

@@ -5,8 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:mrfixr/booking.dart';
 import 'package:mrfixr/history.dart';
 import 'package:mrfixr/morescreen.dart';
-
-import 'dashboard.dart';
+import 'dashboard/dashboard.dart';
 
 class BottomNav extends StatefulWidget {
   const BottomNav({super.key});
@@ -68,7 +67,7 @@ class _BottomNavState extends State<BottomNav> {
   }
    Widget bodyContainer() {
     var pagesData = [
-      const DashboardScreen(),
+      const DashBorad(),
       const Booking(),
       const History(),
       const MoreScreen(),

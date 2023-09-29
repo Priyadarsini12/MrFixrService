@@ -16,7 +16,7 @@ class _NotificationpageState extends State<Notificationpage> {
       appBar: AppBar(
         elevation: 2.5,
         titleSpacing: 0,
-        backgroundColor: Colors.white.withOpacity(0.94),
+        //backgroundColor: Colors.white.withOpacity(0.94),
         leading: Padding(
           padding:
               EdgeInsets.all(MediaQuery.of(context).size.width * 0.025),
@@ -51,7 +51,8 @@ class _NotificationpageState extends State<Notificationpage> {
             Container(
               height: MediaQuery.of(context).size.height*0.095,
              width: MediaQuery.of(context).size.width,
-             color: Colors.white.withOpacity(0.94),
+            // color: Colors.white.withOpacity(0.94),
+              color: Theme.of(context).primaryColor,
              child: Padding(
                padding: const EdgeInsets.all(12.0),
                child: Row(
