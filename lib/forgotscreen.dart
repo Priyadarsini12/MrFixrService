@@ -1,3 +1,4 @@
+import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:pinput/pinput.dart';
 
@@ -12,7 +13,7 @@ class _ForgotScreenState extends State<ForgotScreen> {
 
 
 
-  final phoneController = TextEditingController();
+  final emailorphoneController = TextEditingController();
   final newPasswordController = TextEditingController();
   final confirmPasswordController = TextEditingController();
 
@@ -21,21 +22,27 @@ class _ForgotScreenState extends State<ForgotScreen> {
    bool newPassword=false;
    bool confirmPassword=false;
    @override
-  void initState() {
+   void initState() {
     super.initState();
     newPassword=true;
     confirmPassword=true;
   }
    void sendOTP() {
-  final phone = phoneController.text;
+  final emailorphone = emailorphoneController.text;
   final newPassword = newPasswordController.text;
   final confirmPassword = confirmPasswordController.text;
+  bool isEmail(String input) => EmailValidator.validate(input);
 
-  if (phone.isEmpty) {
-    showSnackbar("Please enter your phone number");
+  bool isPhone(String input) => RegExp(
+  r'^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$'
+  ).hasMatch(input);
+
+
+  if (emailorphone.isEmpty) {
+    showSnackbar("Please enter your email or phone number");
     return;
-  } else if (phone.length < 10) {
-    showSnackbar("Invalid phone number.");
+  } else if (!isEmail(emailorphone)&& !isPhone(emailorphone)) {
+    showSnackbar("Please enter a valid email or Phone number");
     return;
   }
 
@@ -138,7 +145,7 @@ void showSnackbar(String message) {
                 padding: const EdgeInsets.all(8.0),
                 child: TextFormField(
                  maxLength: 10,
-                  controller: phoneController,
+                  controller:emailorphoneController,
                   keyboardType: TextInputType.phone,
                   /*validator: (val) {
                     if(val!.isEmpty){
@@ -152,7 +159,7 @@ void showSnackbar(String message) {
                   decoration:  const InputDecoration(
                     counterText: '',
                     border: InputBorder.none,
-                    hintText: 'Enter your phone Number',
+                    hintText: 'Enter your email or phone Number',
                     hintStyle: TextStyle(
                       color:  Color.fromARGB(255, 4, 106, 189),
                       fontSize: 14,
@@ -228,17 +235,17 @@ void showSnackbar(String message) {
                       fontWeight: FontWeight.bold
                     ),
                     suffixIcon: IconButton(
-                     icon: Icon(confirmPassword? Icons.visibility:Icons.visibility_off,color: Colors.blueGrey,),
+                     icon: Icon(confirmPassword? Icons.visibility:Icons.visibility_off,color:const Color.fromARGB(255, 4, 83, 147)),
                          onPressed: () {
                            setState(() {
                              confirmPassword=!confirmPassword;
                            }
                            );
                          },
-                         ),
+                       ),
+                     ),
                   ),
                 ),
-              ),
               const SizedBox(height: 15,),
               Padding(
                 padding: const EdgeInsets.only(left: 18, right: 18, top: 12),
@@ -248,7 +255,7 @@ void showSnackbar(String message) {
                   defaultPinTheme: defaultPinTheme,
                   focusedPinTheme: defaultPinTheme.copyDecorationWith(
                     border: Border.all(
-                        color: const Color.fromARGB(255, 1, 20, 39)),
+                      color: const Color.fromARGB(255, 1, 20, 39)),
                     borderRadius: BorderRadius.circular(15),
                   ),
                   submittedPinTheme: defaultPinTheme.copyWith(

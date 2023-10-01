@@ -1,30 +1,23 @@
 import 'package:flutter/material.dart';
 
-import 'morescreen/profile.dart';
-
-class MoreScreen extends StatefulWidget {
-  const MoreScreen({super.key});
-
-  @override
-  State<MoreScreen> createState() => _MoreScreenState();
-}
-
-class _MoreScreenState extends State<MoreScreen> {
-  @override
-  Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        backgroundColor: Colors.transparent,
-        body: Padding(
-          padding: EdgeInsets.only(top: MediaQuery.of(context).size.height*0.30),
-          child: SizedBox(
-            height: MediaQuery.of(context).size.height*0.50,
-            width: MediaQuery.of(context).size.width*0.99,
-            child: Card(
-              shape: const RoundedRectangleBorder(
-                borderRadius: BorderRadius.only(topLeft: Radius.circular(18),topRight: Radius.circular(18)),
-              ),
+void showMoreBottomSheet(BuildContext context) {
+  showModalBottomSheet(
+    shape:const RoundedRectangleBorder(
+            borderRadius: BorderRadius.vertical(
+              top: Radius.circular(20),
+            ),
+          ),
+    context: context,
+    builder: (builderContext) {
+   return Container(
+    height: MediaQuery.of(context).size.height*0.50,
+     width: MediaQuery.of(context).size.width*0.99,
+                   decoration: const BoxDecoration(
               color: Colors.white,
+                        borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(20.0),
+                            topRight: Radius.circular(20.0))),
+                 //color: Colors.white,
               child: Column(
                 children: [
                   IconButton(
@@ -59,13 +52,11 @@ class _MoreScreenState extends State<MoreScreen> {
                   ),
                 ],
               ),
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-  //tapped(int index) {
+            );
+          }
+          );
+        }
+          //tapped(int index) {
    //if (index == 0) {
    //Navigator.push(context,
     //   MaterialPageRoute(builder: (context) => const Profilepage()));}
@@ -101,9 +92,9 @@ class _MoreScreenState extends State<MoreScreen> {
          //  context, MaterialPageRoute(builder: (context) => const CancellationPolicyScreen()));
     // } else if (index == 11) {
       // Navigator.push(context, MaterialPageRoute(builder: (context) => const SignOutScreen()));
-     }
+     
   
-
+   
 class MoreList {
   late String image, title;
 
@@ -219,3 +210,4 @@ class MoreDetiles extends StatelessWidget {
     );
   }
 }
+

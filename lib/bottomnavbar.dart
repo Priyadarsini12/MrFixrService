@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:mrfixr/booking.dart';
 import 'package:mrfixr/history.dart';
-import 'package:mrfixr/morescreen.dart';
+import 'package:mrfixr/morepage.dart';
 import 'dashboard/dashboard.dart';
 
 class BottomNav extends StatefulWidget {
@@ -36,11 +36,23 @@ class _BottomNavState extends State<BottomNav> {
           unselectedItemColor: Colors.grey.shade500,
           backgroundColor: Colors.blue.shade800,
           //fixedColor: Colors.blue.shade800,
-          onTap: (val){
+          /*onTap: (val){
             setState(() {
               index = val;
             });
-          },
+          },*/
+          onTap: (val) {
+           if (val == 3) {
+             showMoreBottomSheet(context);
+            } else {
+            setState(() {
+              if(val != 3){
+              index = val;
+              }
+            });
+            }
+           },
+
           currentIndex: index,
           items: const [
           BottomNavigationBarItem(
@@ -70,7 +82,7 @@ class _BottomNavState extends State<BottomNav> {
       const DashBorad(),
       const Booking(),
       const History(),
-      const MoreScreen(),
+      //const MoreScreen(),
 
       //const DashBorad(),
       //const Center(child: Text('2')),

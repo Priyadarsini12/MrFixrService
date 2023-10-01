@@ -13,11 +13,20 @@ class _LanguageState extends State<Language> {
 
   void _showLanguageSelector(BuildContext context) {
     showModalBottomSheet<void>(
+      shape:const RoundedRectangleBorder(
+            borderRadius: BorderRadius.vertical(
+              top: Radius.circular(20),
+            ),
+          ),
       context: context,
       builder: (BuildContext context) {
         return Container(
-         color: Colors.white.withOpacity(0.94),
-          height: MediaQuery.of(context).size.height * 0.45,
+              decoration: BoxDecoration(
+              color: Colors.grey.withOpacity(0.1),
+                        borderRadius: const BorderRadius.only(
+                            topLeft: Radius.circular(20.0),
+                            topRight: Radius.circular(20.0))),
+              height: MediaQuery.of(context).size.height * 0.45,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,
@@ -28,7 +37,7 @@ class _LanguageState extends State<Language> {
                 },
                 icon: const Icon(Icons.keyboard_arrow_down_outlined, size: 30,color: Colors.black,),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               Text(
                 'Select Language',
                 style: TextStyle(

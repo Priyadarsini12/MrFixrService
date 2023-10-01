@@ -52,12 +52,13 @@ class _EditprofileState extends State<Editprofile>
           padding: EdgeInsets.all(MediaQuery.of(context).size.width * 0.025),
           child: IconButton(
             onPressed: () {
-              Navigator.push(
+              /*Navigator.push(
                 context,
                 MaterialPageRoute(
                   builder: (context) => const Profilepage(),
                 ),
-              );
+              );*/
+              Navigator.pop(context);
             },
             icon: Icon(
               Icons.arrow_back_ios,

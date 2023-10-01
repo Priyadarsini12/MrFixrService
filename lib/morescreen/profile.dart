@@ -25,9 +25,6 @@ class _ProfilepageState extends State<Profilepage> {
         appBar: AppBar(
         elevation: 2.5,
         titleSpacing: 0,
-        //backgroundColor: Colors.white.withOpacity(0.94),
-       // backgroundColor: themeProvider.themeData.appBarTheme.backgroundColor,
-
         leading: Padding(
           padding:
               EdgeInsets.all(MediaQuery.of(context).size.width * 0.025),

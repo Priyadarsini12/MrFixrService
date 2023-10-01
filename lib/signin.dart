@@ -1,86 +1,29 @@
-
+ import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
-import 'package:intl_phone_field/intl_phone_field.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:mrfixr/forgotscreen.dart';
 
-import 'Signup.dart';
 import 'bottomnavbar.dart';
-import 'forgotscreen.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
+class Signin extends StatefulWidget {
+  const Signin({super.key});
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<Signin> createState() => _SigninState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
-
-  TextEditingController phoneController = TextEditingController();
+class _SigninState extends State<Signin> {
+  TextEditingController emailOrPhoneController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
-
   final GlobalKey<FormState> formKey = GlobalKey();
   bool isVisible = false;
-  bool rememberMe = false; 
-  SharedPreferences? _prefs; 
+  bool rememberMe = false;
 
-  @override
-  void initState() {
-    super.initState();
-    SharedPreferences.getInstance().then((prefs) {
-      _prefs = prefs;
-      phoneController.text = _prefs!.getString('phone') ?? '';
-      passwordController.text = _prefs!.getString('password') ?? '';
-      rememberMe = _prefs!.getBool('rememberMe') ?? false;
-      setState(() {});
-    });
-  }
+  bool isEmail(String input) => EmailValidator.validate(input);
 
-  void showSnackBar(String message) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        duration: const Duration(seconds: 1),
-        margin: const EdgeInsets.all(15),
-        behavior: SnackBarBehavior.floating,
-        content: Text(message,
-        style: const TextStyle(fontSize: 16),),
-        backgroundColor: Colors.red,
-        )
-       );
-  }
+  bool isPhone(String input) => RegExp(
+  r'^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$'
+  ).hasMatch(input);
 
-  void signIn() {
-    String phone = phoneController.text;
-    String password = passwordController.text;
-        if (rememberMe) {
-      // Store phone and password if rememberMe is checked
-      _prefs?.setString('phone', phone);
-      _prefs?.setString('password', password);
-      _prefs?.setBool('rememberMe', true);
-    } else {
-      // Clear stored values if rememberMe is unchecked
-      _prefs?.remove('phone');
-      _prefs?.remove('password');
-      _prefs?.setBool('rememberMe', false);
-    }
-
-
-    if (phone.isEmpty && password.isEmpty) {
-      showSnackBar("Enter your phone number ");
-    } else if(phone.isEmpty || phone.length < 10)  {
-      showSnackBar("Invalid phone number.");
-    } else if (password.isEmpty) {
-      showSnackBar("Enter your password.");
-   }else if (password.isEmpty || password.length < 8) {
-      showSnackBar("Password should be at least 8 characters.");
-    }else {
-      Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => const BottomNav()),
-    );
-    showSnackBar("Successfully Logged In");
-   }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -104,7 +47,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   children: <TextSpan>[
                     TextSpan(
-                      text: 'Fixr Service',
+                      text: 'Fixr Provider',
                       style: TextStyle(
                         color: Color.fromARGB(255, 250, 193, 22),
                         fontSize: 30,
@@ -117,23 +60,43 @@ class _LoginScreenState extends State<LoginScreen> {
               const SizedBox(height: 35,),
                Padding(
                  padding: const EdgeInsets.only(left:5,right:5),
-                 child: IntlPhoneField(
-                       disableLengthCheck: true,
-                         flagsButtonPadding: const EdgeInsets.only(right:10),
-                             dropdownIconPosition: IconPosition.trailing,
-                            controller: phoneController,
-                            keyboardType: TextInputType.phone,
-                         decoration: const InputDecoration(
-                           hintText: 'Enter Your Phone Number',
-                           hintStyle: TextStyle(
-                               fontSize: 15,
-                               color: Colors.grey,
-                             ),
+              child: Container(
+                 decoration: const BoxDecoration(
+                      border: Border(
+                        bottom: BorderSide(
+                          color: Colors.black,
+                        ),
+                      ),
+                    ),
+                   padding: const EdgeInsets.only(right:1),
+                    child:
+                     Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        const Text('Email or Phone',
+                        style: TextStyle(color: Color.fromARGB(255, 4, 83, 147),fontSize: 15,fontWeight: FontWeight.bold),),
+                       const SizedBox(width: 30,),
+                        Expanded(
+                          child: TextFormField(
+                            //textAlign: TextAlign.center,
+                            controller: emailOrPhoneController,
+                            obscureText: isVisible,
+                               decoration: const InputDecoration(
+                              border: InputBorder.none,
+                              hintText: 'Enter email or phone',
+                              hintStyle: TextStyle(
+                                color: Colors.grey,
+                                fontSize: 14,
+                                //fontWeight: FontWeight.bold
+                              ),
+                               )
+                             )
                           ),
-                      initialCountryCode: 'IN',
+                        ]
+                     )
                      ),
-               ),
-               const SizedBox(height:25),
+                 ),
+               const SizedBox(height:35),
             Padding(
                  padding: const EdgeInsets.only(left:6,right: 6),
                  child: Container(
@@ -151,7 +114,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       children: [
                         const Text('Password',
                         style: TextStyle(color: Color.fromARGB(255, 4, 83, 147),fontSize: 15,fontWeight: FontWeight.bold),),
-                       const SizedBox(width: 30,),
+                       const SizedBox(width: 65,),
                         Expanded(
                           child: TextFormField(
                             //textAlign: TextAlign.center,
@@ -159,7 +122,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             obscureText: isVisible,
                                decoration: InputDecoration(
                               border: InputBorder.none,
-                              hintText: 'Enter your Password',
+                              hintText: '********',
                               hintStyle: const TextStyle(
                                 color: Colors.grey,
                                 fontSize: 14,
@@ -187,7 +150,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ),
                ),
-              const SizedBox(height: 6,),  
+              const SizedBox(height: 10,),  
                Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
@@ -239,7 +202,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),              
                 ],
               ),
-              const SizedBox(height: 30,),
+              const SizedBox(height: 35,),
               SizedBox(
                  height: MediaQuery.of(context).size.height*0.06,
                  width: MediaQuery.of(context).size.width*0.93,
@@ -282,13 +245,13 @@ class _LoginScreenState extends State<LoginScreen> {
                   // const SizedBox(width: 3,),
                   TextButton(
                     onPressed: () {
-                      Navigator.pushReplacement(
-                        context, 
-                        MaterialPageRoute(
-                          builder: (context) =>
-                          const SignUpScreen()
-                        ),
-                      );
+                      //Navigator.pushReplacement(
+                        //context, 
+                        //MaterialPageRoute(
+                          //builder: (context) =>
+                          //const SignUpScreen()
+                        //),
+                      //);
                     },
                     child: const Text(
                       "Register Here",
@@ -305,6 +268,50 @@ class _LoginScreenState extends State<LoginScreen> {
           ),
         ),
       ),
-    ); 
+    
+    );
+
+  }
+
+
+void signIn() {
+  final emailOrPhone = emailOrPhoneController.text.trim();
+  final password = passwordController.text.trim();
+
+  if (emailOrPhone.isEmpty && password.isEmpty) {
+    showSnackBar("Please enter email or phone and password.");
+  } else if (password.isNotEmpty && password.length < 8) {
+    showSnackBar("Password should be at least 8 characters.");
+  } else if (emailOrPhone.isEmpty) {
+    if (password.isNotEmpty && password.length < 8) {
+      showSnackBar("Password should be at least 8 characters.");
+    } else {
+      showSnackBar("Please enter your email or phone number.");
+    }
+  } else if (!isEmail(emailOrPhone)&& !isPhone(emailOrPhone)) {
+    showSnackBar("Please enter a valid Email or phone number");
+  }  else {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => const BottomNav()),
+    );
+    showSnackBar("Successfully Logged In", backgroundColor: Colors.green);
   }
 }
+
+
+
+   void showSnackBar(String message, {Color? backgroundColor}) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        duration: const Duration(seconds: 1),
+        margin: const EdgeInsets.all(15),
+        behavior: SnackBarBehavior.floating,
+        content: Text(message,
+        style: const TextStyle(fontSize: 16),),
+       backgroundColor: backgroundColor ?? Colors.red,
+        )
+       );
+  }
+}
+
